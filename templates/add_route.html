@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Route - Administrator{% endblock %}
+
+{% block content %}
+<div class="center-card-layout">
+    <div class="glass-panel" style="width: 100%; max-width: 600px; padding: 40px;">
+        <h2 class="page-title text-center" style="font-size: 2rem; margin-bottom: 8px;"><i class="fa-solid fa-route"
+                style="color: var(--accent-glow); margin-right: 8px;"></i> Add Route</h2>
+        <p class="text-center text-muted mb-6">Create a new destination path</p>
+
+        <form method="POST" action="{{ url_for('addroute') }}">
+            <div class="grid grid-2" style="gap: 16px; margin-bottom: 16px;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Source City</label>
+                    <input type="text" name="source" class="form-control" placeholder="E.g. New York" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Destination City</label>
+                    <input type="text" name="destination" class="form-control" placeholder="E.g. Boston" required>
+                </div>
+            </div>
+
+            <div class="grid grid-2" style="gap: 16px; margin-bottom: 24px;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Distance (km/miles)</label>
+                    <input type="number" step="0.01" name="distance" class="form-control" placeholder="E.g. 350.5"
+                        required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Est. Travel Time</label>
+                    <input type="time" name="estimated_travel_time" class="form-control" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 14px;">
+                Save Route <i class="fa-solid fa-floppy-disk" style="margin-left: 8px;"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

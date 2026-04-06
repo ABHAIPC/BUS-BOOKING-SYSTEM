@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Ticket - Nexus Bus Lines{% endblock %}
+
+{% block content %}
+<div class="center-card-layout">
+    <div class="glass-panel" style="width: 100%; max-width: 700px; padding: 40px;">
+        <h2 class="page-title text-center" style="font-size: 2rem; margin-bottom: 8px;">Checkout</h2>
+        <p class="text-center text-muted mb-6">Complete your passenger details to reserve your seat</p>
+
+        {% if schedule %}
+        <div
+            style="background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; padding: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <p style="font-weight: 600;">{{ schedule.route.Source }} <i class="fa-solid fa-arrow-right"
+                        style="margin: 0 4px; font-size: 0.8em; color: var(--text-secondary);"></i> {{
+                    schedule.route.Destination }}</p>
+                <p class="text-muted" style="font-size: 0.85rem;">Departs: {{ schedule.Departure_Time.strftime('%Y-%m-%d
+                    %H:%M') }}</p>
+            </div>
+            <div style="text-align: right;">
+                <p class="text-muted" style="font-size: 0.85rem;">Schedule ID</p>
+                <p style="font-weight: 600; font-family: monospace; color: var(--accent-glow);">#{{ schedule.Schedule_ID
+                    }}</p>
+            </div>
+        </div>
+
+        <form method="POST" action="{{ url_for('book_ticket') }}">
+            <input type="hidden" name="schedule_id" value="{{ schedule.Schedule_ID }}">
+
+            <div class="grid grid-2" style="gap: 16px; margin-bottom: 16px;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+            </div>
+
+            <div class="grid grid-3" style="gap: 16px; margin-bottom: 24px;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Gender</label>
+                    <select name="gender" class="form-control" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Age</label>
+                    <input type="number" name="age" class="form-control" min="1" max="120" placeholder="25" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Contact Number</label>
+                    <input type="tel" name="contact_number" class="form-control" placeholder="+1234567890" required>
+                </div>
+            </div>
+
+            <div class="form-group"
+                style="margin-bottom: 32px; border-top: 1px solid var(--glass-border); padding-top: 24px;">
+                <label class="form-label">Seat Number Preference</label>
+                <input type="number" name="seat_number" class="form-control" min="1" max="50" placeholder="E.g. 12"
+                    required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 16px; font-size: 1.1rem;">
+                Confirm Booking <i class="fa-solid fa-circle-check" style="margin-left: 8px;"></i>
+            </button>
+        </form>
+        {% else %}
+        <div style="text-align: center;">
+            <p class="text-danger mb-4">No schedule selected.</p>
+            <a href="{{ url_for('get_ticket') }}" class="btn btn-primary">Go Back</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

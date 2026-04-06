@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Nexus Bus Lines{% endblock %}
+
+{% block content %}
+<div class="center-card-layout">
+    <div class="glass-panel auth-card">
+        <div style="padding: 32px;">
+            <h2 class="page-title text-center" style="font-size: 2rem; margin-bottom: 24px;">Welcome Back</h2>
+            <p class="text-center text-muted mb-6">Log in to manage your bookings</p>
+
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter your username" required
+                        autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter your password"
+                        required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mt-4" style="padding: 14px;">
+                    Log In <i class="fa-solid fa-arrow-right-to-bracket" style="margin-left: 8px;"></i>
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-muted">Don't have an account? <a href="{{ url_for('signin') }}">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

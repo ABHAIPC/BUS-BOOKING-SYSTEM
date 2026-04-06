@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Nexus Bus Lines{% endblock %}
+
+{% block content %}
+<div style="margin-top: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; border-bottom: 1px solid var(--accent-magenta); padding-bottom: 16px;">
+        <div>
+            <h2 class="page-title" style="margin-bottom: 4px; color: var(--accent-magenta); text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);"><i class="fa-solid fa-server"></i> Command Center</h2>
+            <p class="text-muted">System Administration & Logistics</p>
+        </div>
+        <div style="background: rgba(255, 0, 255, 0.1); border: 1px solid var(--accent-magenta); padding: 8px 16px; border-radius: 2px;">
+            <span style="color: var(--accent-magenta); font-weight: bold; font-family: 'Orbitron'; font-size: 0.9rem;"><i class="fa-solid fa-circle-check"></i> SYS_ADMIN ACTIVE</span>
+        </div>
+    </div>
+
+    <div class="grid grid-2" style="gap: 32px;">
+        <!-- Admin Profile -->
+        <div class="glass-panel" style="padding: 32px; border-color: var(--accent-magenta);">
+            <h3 style="margin-bottom: 24px; color: var(--accent-magenta);"><i class="fa-regular fa-id-card"></i> Administrator Identity</h3>
+            
+            <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 24px;">
+                <div style="width: 80px; height: 80px; border-radius: 2px; background: rgba(0,0,0,0.5); border: 1px solid var(--accent-magenta); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--accent-magenta);">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 4px; font-size: 1.5rem;">SYS // {{ user.Username }}</h3>
+                    <p class="text-muted" style="font-family: monospace;">ACCESS LEVEL: MAXIMUM</p>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.4); padding: 16px; border-left: 3px solid var(--accent-magenta); font-family: monospace;">
+                <p><strong>UID:</strong> #{{ user.User_ID }}</p>
+                <p><strong>STATUS:</strong> ONLINE</p>
+            </div>
+        </div>
+
+        <!-- System Controls -->
+        <div class="glass-panel" style="padding: 32px;">
+            <h3 style="margin-bottom: 24px;"><i class="fa-solid fa-terminal"></i> Network Operations</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <a href="{{ url_for('addroute') }}" class="btn" style="background: rgba(0, 255, 255, 0.1); border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: space-between;">
+                    <span><i class="fa-solid fa-route" style="margin-right: 8px;"></i> Initialize New Route</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                
+                <a href="{{ url_for('addschedule') }}" class="btn" style="background: rgba(0, 255, 255, 0.1); border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: space-between;">
+                    <span><i class="fa-solid fa-clock-rotate-left" style="margin-right: 8px;"></i> Deploy Bus Schedule</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                
+                <a href="{{ url_for('get_ticket') }}" class="btn" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--text-secondary); color: var(--text-secondary); display: flex; align-items: center; justify-content: space-between;">
+                    <span><i class="fa-solid fa-magnifying-glass" style="margin-right: 8px;"></i> View Public Timetables</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

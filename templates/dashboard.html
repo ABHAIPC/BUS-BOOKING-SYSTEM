@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Nexus Bus Lines{% endblock %}
+
+{% block content %}
+<div class="grid grid-2" style="margin-top: 24px;">
+    <div class="glass-panel" style="padding: 32px;">
+        <h2 class="page-title" style="font-size: 2rem; margin-bottom: 8px;">Welcome, {{ user.Username }}</h2>
+        <p class="text-muted mb-6">Manage your profile and bookings</p>
+
+        <div
+            style="background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; padding: 24px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                <div
+                    style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-color), #2563eb); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">
+                    {{ user.Username[0] | upper }}
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 4px;">{{ user.Username }}</h3>
+                    <p class="text-muted" style="font-size: 0.9rem;">Member since 2026</p>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 16px 0;">
+
+            <div class="grid grid-2" style="gap: 16px;">
+                <div>
+                    <p class="text-muted" style="font-size: 0.8rem; text-transform: uppercase;">Email</p>
+                    <p>{{ user.Email or 'Not provided' }}</p>
+                </div>
+                <div>
+                    <p class="text-muted" style="font-size: 0.8rem; text-transform: uppercase;">User ID</p>
+                    <p>#{{ user.User_ID }}</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ url_for('get_ticket') }}" class="btn btn-primary btn-block" style="padding: 14px;">Quick Book a
+            Ticket <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="glass-card">
+            <h3 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-ticket"
+                    style="color: var(--accent-glow);"></i> Recent Bookings</h3>
+            <div style="text-align: center; padding: 32px 0;">
+                <p class="text-muted mb-4">You have no recent bookings.</p>
+                <a href="{{ url_for('get_ticket') }}" class="btn"
+                    style="border: 1px solid var(--accent-color); color: var(--accent-color);">Find a bus now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

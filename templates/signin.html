@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up - Nexus Bus Lines{% endblock %}
+
+{% block content %}
+<div class="center-card-layout">
+    <div class="glass-panel auth-card">
+        <div style="padding: 32px;">
+            <h2 class="page-title text-center" style="font-size: 2rem; margin-bottom: 24px;">Create Account</h2>
+            <p class="text-center text-muted mb-6">Join Nexus Lines for priority bookings</p>
+
+            <form method="POST" action="{{ url_for('signin') }}">
+                <div class="form-group">
+                    <label class="form-label">Choose a Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="E.g. john_doe" required
+                        autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Create a Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Strong password" required
+                        minlength="6">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mt-4" style="padding: 14px;">
+                    Create Account <i class="fa-solid fa-user-plus" style="margin-left: 8px;"></i>
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-muted">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

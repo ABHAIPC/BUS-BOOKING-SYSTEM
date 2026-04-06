@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Schedule - Administrator{% endblock %}
+
+{% block content %}
+<div class="center-card-layout">
+    <div class="glass-panel" style="width: 100%; max-width: 600px; padding: 40px;">
+        <h2 class="page-title text-center" style="font-size: 2rem; margin-bottom: 8px;"><i
+                class="fa-regular fa-calendar-plus" style="color: var(--accent-glow); margin-right: 8px;"></i> Add
+            Schedule</h2>
+        <p class="text-center text-muted mb-6">Assign a bus to a route timing</p>
+
+        <form method="POST" action="{{ url_for('addschedule') }}">
+            <div class="grid grid-2" style="gap: 16px; margin-bottom: 16px;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Bus ID</label>
+                    <input type="number" name="bus_id" class="form-control" placeholder="E.g. 1" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Route ID</label>
+                    <input type="number" name="route_id" class="form-control" placeholder="E.g. 5" required>
+                </div>
+            </div>
+
+            <div class="grid grid-2" style="gap: 16px; margin-bottom: 24px;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Departure Time</label>
+                    <input type="datetime-local" name="departure_time" class="form-control" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Arrival Time</label>
+                    <input type="datetime-local" name="arrival_time" class="form-control" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 14px;">
+                Save Schedule <i class="fa-solid fa-clock-rotate-left" style="margin-left: 8px;"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

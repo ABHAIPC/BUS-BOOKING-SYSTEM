@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ticket.css') }}">
+    <title>Bus Schedules</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>VoyageSerin</h1>
+        </div>
+    </nav>
+    <section>
+        <h2>Bus Schedules for {{ travel_date }}</h2>
+        {% if schedules %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Bus Number</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for schedule in schedules %}
+                <tr>
+                    <td>{{ schedule.bus.Bus_Number }}</td>
+                    <td>{{ schedule.Departure_Time }}</td>
+                    <td>{{ schedule.Arrival_Time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No schedules found for the selected route on this date.</p>
+        {% endif %}
+        <a href="/getticket">Back to Get Ticket</a>
+    </section>
+</body>
+</html>

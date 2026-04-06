@@ -1,0 +1,4 @@
+myen/
+__pycache__/
+.env
+models/_pycache/

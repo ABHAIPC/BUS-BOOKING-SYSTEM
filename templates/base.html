@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nexus Bus Lines{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <i class="fa-solid fa-shuttle-space"></i>
+                Nexus<span>Lines</span>
+            </a>
+            <nav class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('get_ticket') }}" class="nav-link">Book</a>
+                
+                {% if current_user %}
+                    {% if current_user.IsAdmin %}
+                        <a href="{{ url_for('admin_dashboard') }}" class="nav-link" style="color: var(--accent-magenta);"><i class="fa-solid fa-user-shield"></i> Admin Panel</a>
+                    {% else %}
+                        <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+                    {% endif %}
+                    <span class="nav-link" style="color:var(--success); border-left: 1px solid var(--glass-border); padding-left: 16px;"><i class="fa-solid fa-signal"></i> {{ current_user.Username }}</span>
+                    <a href="{{ url_for('logout') }}" class="nav-btn" style="border-color: var(--danger); color: var(--danger);">Terminate</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="nav-btn">Access</a>
+                    <a href="{{ url_for('signin') }}" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.95rem;">Init</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                        <span style="cursor: pointer;" onclick="this.parentElement.style.display='none';"><i class="fa-solid fa-xmark"></i></span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Nexus Transport Protocols. // SYS_ACTIVE = TRUE</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

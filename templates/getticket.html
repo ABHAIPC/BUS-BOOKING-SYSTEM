@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Get Ticket - Nexus Bus Lines{% endblock %}
+
+{% block content %}
+<div class="center-card-layout">
+    <div class="glass-panel" style="width: 100%; max-width: 600px; padding: 40px;">
+        <h2 class="page-title text-center" style="font-size: 2rem; margin-bottom: 24px;">Find Your Bus</h2>
+
+        <form method="POST" action="{{ url_for('get_ticket') }}">
+            <div class="form-group">
+                <label class="form-label">Select Route</label>
+                <select name="route" class="form-control" required>
+                    <option value="" disabled selected>-- Choose your destination --</option>
+                    {% for route in routes %}
+                    <option value="{{ route.Route_ID }}">{{ route.Source }} to {{ route.Destination }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mt-4">
+                <label class="form-label">Travel Date</label>
+                <input type="date" name="travel_date" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-4" style="padding: 14px; font-size: 1.1rem;">
+                Search Schedules <i class="fa-solid fa-magnifying-glass" style="margin-left: 8px;"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
