@@ -26,29 +26,25 @@ A streamlined web application for bus route management and ticket reservations. 
 
 ### Installation Steps
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
 
-2.  **Create a virtual environment (Recommended):**
+
+1.  **Create a virtual environment (Recommended):**
     ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows use: venv\Scripts\activate
     ```
 
-3.  **Install dependencies:**
+2.  **Install dependencies:**
     ```bash
     pip install Flask Flask-SQLAlchemy Werkzeug
     # Alternatively, if there is a requirements.txt file:
     # pip install -r requirements.txt
     ```
 
-4.  **Configuration:**
+3.  **Configuration:**
     *   Initialize a new environment key: Replace the default `SECRET_KEY` in `app.py` or `.env` with a securely generated random secret key prior to production deployment.
 
-5.  **Run the App Local Server:**
+4.  **Run the App Local Server:**
     ```bash
     python app.py
     ```
@@ -70,6 +66,3 @@ A streamlined web application for bus route management and ticket reservations. 
 *   **Secret Management:** Avoid committing hardcoded secret keys or production database URIs to source control. Use environment variables.
 *   **Database:** This application utilizes SQLite primarily for development and demonstration context. For production, migrating to a robust RDBMS like PostgreSQL or MySQL is advised.
 
----
-*Note: This repository provides an abstract structural pattern for a reservation system. Any specific environment keys, confidential data, or proprietary business details have been intentionally omitted to ensure safety on public version control networks.*
-"# BUS-BOOKING-SYSTEM" 
