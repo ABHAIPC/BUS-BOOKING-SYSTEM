@@ -2,3 +2,5 @@ myen/
 __pycache__/
 .env
 models/_pycache/
+*.db
+instance/
